@@ -1,10 +1,10 @@
 class UserPassword < ApplicationRecord
-  ROLES = ["owner", "viewer", "editor"]
+  ROLES = [ "owner", "viewer", "editor" ]
 
   belongs_to :user
   belongs_to :password
 
-  validates :role, presence: true, inclusion: {in: ROLES}
+  validates :role, presence: true, inclusion: { in: ROLES }
 
   attribute :role, default: :viewer
 

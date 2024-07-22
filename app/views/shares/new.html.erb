@@ -1,5 +1,4 @@
-<%= turbo_frame_tag "users", target:"_top" do%>
-    <h3>New user for this password</h3>
-
-    <%= render "form", password: @password, user_password: @user_password, data: {controller: "reset_form", action: "turbo:submit-end->reset_form#reset"}%>
-<%end%>
+<%= turbo_frame_tag "users", target:"_top" do %>
+  <h3>New user for this password</h3>
+  <%= render "form", password: @password, user_password: @user_password, data: {controller: "reset_form", action: "turbo:submit-end->reset_form#reset"} %>
+<% end %>

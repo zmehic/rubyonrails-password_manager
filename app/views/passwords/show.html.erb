@@ -1,33 +1,33 @@
 <%= link_to "← Go back", root_path, class:"block mb-4 no-underline text-blue-500" %>
 
-<%= turbo_frame_tag "password" do%>
-<div class="mb-4 flex justify-between items-center">
-    <h1 class="mb-0">Pregled Passworda za <%= @password.url%>
-    <%= link_to @password.url ,target: :_blank do%>
+<%= turbo_frame_tag "password" do %>
+  <div class="mb-4 flex justify-between items-center">
+    <h1 class="mb-0">Pregled Passworda za <%= @password.url %>
+      <%= link_to @password.url ,target: :_blank do %>
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="inline-block text-blue-500 size-6">
             <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9" />
         </svg>
-    <%end%>
+      <% end %>
     </h1>
-    <%= link_to "Edit", edit_password_path(@password) if @user_password.editable?%>
-</div>
-<h3>Credentials</h3>
-<h6>Username/Email</h6>
-<div class="flex items-center gap-1">
-    <pre class="my-0 flex-grow"><code><%=@password.username%></code></pre>
-    <%= button_tag "Copy", class: "px-2 py-2.5 bg-gray-200 rounded", data: {controller:"clipboard", action:"click->clipboard#writeClipboardText", clipboard_content_value: @password.username}%>
-</div>
-<h6 >Password</h6>
-<div class="flex items-center gap-1">
+    <%= link_to "Edit", edit_password_path(@password) if @user_password.editable? %>
+  </div>
+  <h3>Credentials</h3>
+  <h6>Username/Email</h6>
+  <div class="flex items-center gap-1">
+    <pre class="my-0 flex-grow"><code><%= @password.username %></code></pre>
+    <%= button_tag "Copy", class: "px-2 py-2.5 bg-gray-200 rounded", data: {controller:"clipboard", action:"click->clipboard#writeClipboardText", clipboard_content_value: @password.username} %>
+  </div>
+  <h6 >Password</h6>
+  <div class="flex items-center gap-1">
     <pre class="my-0 flex-grow"><code><%=@password.password%></code></pre>
-    <%= button_tag "Copy", class: "px-2 py-2.5 bg-gray-200 rounded", data: {controller:"clipboard", action:"click->clipboard#writeClipboardText", clipboard_content_value: @password.password}%>
-</div>
-<%end%>
+    <%= button_tag "Copy", class: "px-2 py-2.5 bg-gray-200 rounded", data: {controller:"clipboard", action:"click->clipboard#writeClipboardText", clipboard_content_value: @password.password} %>
+  </div>
+<% end %>
 <div class="my-4 mt-8flex justify-between items-center">
-    <h3 class="my-0">Shared with</h3>
-    <%= turbo_frame_tag "users", src: new_password_share_path(@password), target: "_top" if @user_password.shareable?%>
-        <div id="user_passwords" class="flex flex-col gap-1 divide-y divide-gray-200" id="passwords">
-            <%= render @password.user_passwords.includes(:user) %>
-        </div>
+  <h3 class="my-0">Shared with</h3>
+  <%= turbo_frame_tag "users", src: new_password_share_path(@password), target: "_top" if @user_password.shareable? %>
+  <div id="user_passwords" class="flex flex-col gap-1 divide-y divide-gray-200" id="passwords">
+    <%= render @password.user_passwords.includes(:user) %>
+  </div>
     
 </div>
